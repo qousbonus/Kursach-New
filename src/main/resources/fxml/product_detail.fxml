@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="Infinity" maxWidth="Infinity" style="-fx-background-color:#F4F4F6;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="controller.ProductDetailController">
+
+    <HBox alignment="CENTER_LEFT" maxWidth="Infinity" prefHeight="56" spacing="12" styleClass="navbar">
+        <padding><Insets bottom="0" left="20" right="20" top="0" /></padding>
+        <Button onAction="#handleClose" style="-fx-text-fill:#AAAAAA;" styleClass="btn-ghost" text="← Назад в каталог" />
+        <Label styleClass="nav-brand" />
+        <Region HBox.hgrow="ALWAYS" />
+    </HBox>
+
+    <ScrollPane fitToWidth="true" style="-fx-background-color:transparent; -fx-border-color:transparent;" VBox.vgrow="ALWAYS">
+        <VBox style="-fx-background-color:#F4F4F6;">
+
+            <HBox minHeight="420" style="-fx-background-color:#FFFFFF;">
+
+                <VBox alignment="CENTER" maxWidth="420" minWidth="300" prefWidth="360" style="-fx-background-color:#F8F8F8; -fx-border-color:transparent #EEEEEE transparent transparent; -fx-border-width:0 1 0 0;">
+                    <padding><Insets bottom="40" left="40" right="40" top="40" /></padding>
+                    <ImageView fx:id="productImage" fitHeight="320" fitWidth="300" preserveRatio="true" smooth="true" />
+                </VBox>
+
+                <!-- Info panel -->
+                <VBox spacing="16" HBox.hgrow="ALWAYS">
+                    <padding><Insets bottom="36" left="40" right="48" top="36" /></padding>
+
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Label fx:id="brandLabel" styleClass="label-badge-blue" />
+                        <Label fx:id="discountLabel" styleClass="product-discount" />
+                    </HBox>
+
+                    <Label fx:id="nameLabel" styleClass="heading-lg" wrapText="true" />
+                    <Label fx:id="ratingLabel" style="-fx-font-size:16px;" styleClass="label-stars" />
+
+                    <HBox alignment="CENTER_LEFT" spacing="14">
+                        <Label fx:id="priceLabel" style="-fx-font-size:28px;" styleClass="label-price" />
+                        <Label fx:id="oldPriceLabel" style="-fx-font-size:16px;" styleClass="label-old-price" />
+                    </HBox>
+
+                    <Label fx:id="stockLabel" style="-fx-font-size:13px;" styleClass="label-badge-green" />
+
+                    <Separator />
+
+                    <Label styleClass="heading-sm" text="Описание" />
+                    <TextArea fx:id="descriptionArea" editable="false" prefHeight="110" style="-fx-background-color:transparent; -fx-border-color:transparent;                                      -fx-text-fill:#666666; -fx-font-size:13px; -fx-padding:0;" wrapText="true" />
+
+                    <Separator />
+
+                    <HBox alignment="CENTER_LEFT" spacing="16">
+                        <VBox spacing="6">
+                            <Label styleClass="label-muted" text="Количество:" />
+                            <Spinner fx:id="quantitySpinner" prefHeight="42" prefWidth="110" />
+                        </VBox>
+                        <VBox alignment="BOTTOM_LEFT" spacing="0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                            <Button fx:id="addToCartBtn" maxWidth="Infinity" onAction="#handleAddToCart" prefHeight="46" styleClass="btn-primary" text="🛒  Добавить в корзину" />
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="20" style="-fx-background-color:#F4F4F6;">
+                <padding><Insets bottom="40" left="48" right="48" top="32" /></padding>
+
+                <Label styleClass="heading-md" text="Отзывы покупателей" />
+
+                <Label fx:id="emptyReviewsLabel" managed="false" styleClass="empty-label" text="Пока нет отзывов. Будьте первым!" visible="false" />
+
+                <VBox fx:id="reviewsBox" spacing="14" />
+
+                <VBox fx:id="reviewFormBox" spacing="16" style="-fx-background-color:#FFFFFF; -fx-border-color:#EEEEEE; -fx-border-width:1;                              -fx-border-radius:16; -fx-background-radius:16; -fx-padding:28;">
+                    <Label styleClass="heading-sm" text="Оставить отзыв" />
+
+                    <VBox spacing="8">
+                        <Label styleClass="login-input-label" text="ВАША ОЦЕНКА" />
+                        <HBox fx:id="starBox" alignment="CENTER_LEFT" spacing="8">
+                            <Button fx:id="star1" onAction="#handleStar1" styleClass="star-btn" text="★" />
+                            <Button fx:id="star2" onAction="#handleStar2" styleClass="star-btn" text="★" />
+                            <Button fx:id="star3" onAction="#handleStar3" styleClass="star-btn" text="★" />
+                            <Button fx:id="star4" onAction="#handleStar4" styleClass="star-btn" text="★" />
+                            <Button fx:id="star5" onAction="#handleStar5" styleClass="star-btn" text="★" />
+                            <Label fx:id="ratingValueLabel" style="-fx-padding: 0 0 0 8;" styleClass="label-muted" text="Выберите оценку" />
+                        </HBox>
+                    </VBox>
+
+                    <VBox spacing="6">
+                        <Label styleClass="login-input-label" text="ЗАГОЛОВОК (необязательно)" />
+                        <TextField fx:id="reviewTitleField" promptText="Кратко о товаре..." />
+                    </VBox>
+
+                    <VBox spacing="6">
+                        <Label styleClass="login-input-label" text="КОММЕНТАРИЙ" />
+                        <TextArea fx:id="reviewCommentArea" prefHeight="100" promptText="Расскажите подробнее о вашем опыте использования..." wrapText="true" />
+                    </VBox>
+
+                    <Label fx:id="reviewErrorLabel" styleClass="text-error" wrapText="true" />
+
+                    <Button maxWidth="240" onAction="#handleSubmitReview" prefHeight="44" styleClass="btn-primary" text="Отправить отзыв →" />
+                </VBox>
+            </VBox>
+        </VBox>
+    </ScrollPane>
+</VBox>

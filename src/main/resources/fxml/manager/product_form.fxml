@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.manager.ProductFormController"
+      style="-fx-background-color:#F4F4F6;" maxWidth="Infinity" maxHeight="Infinity" spacing="0">
+
+    <HBox styleClass="navbar" prefHeight="56" alignment="CENTER_LEFT" spacing="12"
+          maxWidth="Infinity">
+        <padding><Insets top="0" right="20" bottom="0" left="20"/></padding>
+        <Label fx:id="formTitleLabel" text="Новый товар" styleClass="heading-md"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="✕  Отмена" styleClass="btn-ghost" onAction="#handleCancel"/>
+    </HBox>
+
+    <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true"
+                style="-fx-background-color:transparent; -fx-border-color:transparent;">
+        <VBox spacing="20" style="-fx-background-color:#F4F4F6;">
+            <padding><Insets top="24" right="28" bottom="28" left="28"/></padding>
+
+            <VBox style="-fx-background-color:#14141C; -fx-border-color:#22223A; -fx-border-width:1; -fx-border-radius:14; -fx-background-radius:14; -fx-padding:20;"
+                  spacing="14">
+                <Label text="ФОТО ТОВАРА" styleClass="login-input-label"/>
+                <HBox spacing="16" alignment="CENTER_LEFT">
+                    <VBox style="-fx-background-color:#1A1A26; -fx-border-color:#2A2A40; -fx-border-width:1.5; -fx-border-radius:12; -fx-background-radius:12;"
+                          prefWidth="120" prefHeight="120" alignment="CENTER">
+                        <ImageView fx:id="previewImage" fitWidth="110" fitHeight="110" preserveRatio="true"/>
+                    </VBox>
+                    <VBox spacing="10">
+                        <HBox spacing="8">
+                            <Button text="📁  Выбрать фото" styleClass="btn-outline" prefHeight="40" onAction="#handleChooseImage"/>
+                            <Button fx:id="clearImageBtn" text="🗑  Очистить фото" prefHeight="40"
+                                    style="-fx-background-color:#3A1E1E; -fx-text-fill:#F87171; -fx-border-color:#502D2D; -fx-border-radius:5; -fx-background-radius:5; -fx-cursor:hand; -fx-font-size:12px;"
+                                    onAction="#handleClearImage" visible="false"/>
+                        </HBox>
+                        <Label fx:id="imageStatusLabel" styleClass="text-muted" wrapText="true" maxWidth="340"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <VBox style="-fx-background-color:#14141C; -fx-border-color:#22223A; -fx-border-width:1; -fx-border-radius:14; -fx-background-radius:14; -fx-padding:20;"
+                  spacing="16">
+                <Label text="ОСНОВНАЯ ИНФОРМАЦИЯ" styleClass="login-input-label"/>
+                <Separator/>
+
+                <HBox spacing="14">
+                    <VBox HBox.hgrow="ALWAYS" spacing="6">
+                        <Label text="НАЗВАНИЕ *" styleClass="login-input-label"/>
+                        <TextField fx:id="nameField" promptText="Название товара"/>
+                    </VBox>
+                    <VBox HBox.hgrow="ALWAYS" spacing="6">
+                        <Label text="БРЕНД" styleClass="login-input-label"/>
+                        <TextField fx:id="brandField" promptText="Производитель"/>
+                    </VBox>
+                </HBox>
+
+                <VBox spacing="6">
+                    <Label text="КАТЕГОРИЯ *" styleClass="login-input-label"/>
+                    <ComboBox fx:id="categoryCombo" maxWidth="Infinity" prefHeight="40"/>
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label text="ОПИСАНИЕ" styleClass="login-input-label"/>
+                    <TextArea fx:id="descriptionField" promptText="Состав, особенности, рекомендации по применению..."
+                              prefHeight="100" wrapText="true"/>
+                </VBox>
+            </VBox>
+
+            <VBox style="-fx-background-color:#14141C; -fx-border-color:#22223A; -fx-border-width:1; -fx-border-radius:14; -fx-background-radius:14; -fx-padding:20;"
+                  spacing="16">
+                <Label text="ЦЕНА И СКЛАД" styleClass="login-input-label"/>
+                <Separator/>
+
+                <HBox spacing="14">
+                    <VBox HBox.hgrow="ALWAYS" spacing="6">
+                        <Label text="ЦЕНА (руб.) *" styleClass="login-input-label"/>
+                        <TextField fx:id="priceField" promptText="0.00"/>
+                    </VBox>
+                    <VBox HBox.hgrow="ALWAYS" spacing="6">
+                        <Label text="СКИДКА (%)" styleClass="login-input-label"/>
+                        <TextField fx:id="discountField" promptText="0"/>
+                    </VBox>
+                    <VBox HBox.hgrow="ALWAYS" spacing="6">
+                        <Label text="НА СКЛАДЕ" styleClass="login-input-label"/>
+                        <TextField fx:id="stockField" promptText="0"/>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <CheckBox fx:id="availableCheck" text="Товар доступен для продажи"
+                              style="-fx-text-fill:#C0C0D8;" selected="true"/>
+                </HBox>
+            </VBox>
+
+            <Label fx:id="errorLabel" styleClass="text-error" wrapText="true"/>
+
+            <Button text="💾  Сохранить товар" styleClass="btn-primary"
+                    maxWidth="Infinity" prefHeight="48" onAction="#handleSave"/>
+        </VBox>
+    </ScrollPane>
+</VBox>

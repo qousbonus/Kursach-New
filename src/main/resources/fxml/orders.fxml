@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="Infinity" maxWidth="Infinity" style="-fx-background-color:#F4F4F6;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="controller.OrdersController">
+
+    <HBox alignment="CENTER_LEFT" maxWidth="Infinity" prefHeight="56" spacing="12" styleClass="navbar">
+        <padding><Insets bottom="0" left="20" right="20" top="0" /></padding>
+        <Button onAction="#handleBack" style="-fx-text-fill:#AAAAAA;" styleClass="btn-ghost" text="← Каталог" />
+        <Label styleClass="nav-brand" text="PROTEIN STORE" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button onAction="#handleProfile" styleClass="nav-link" text="Профиль" />
+    </HBox>
+
+    <VBox alignment="CENTER_LEFT" prefHeight="70" style="-fx-background-color:#FFFFFF; -fx-border-color:transparent transparent #EEEEEE transparent; -fx-border-width:0 0 1 0;">
+        <padding><Insets bottom="0" left="24" right="24" top="0" /></padding>
+        <Label styleClass="heading-lg" text="Мои заказы" />
+        <Label styleClass="label-muted" text="История и статус ваших заказов" />
+    </VBox>
+
+    <ScrollPane fitToWidth="true" style="-fx-background-color:transparent; -fx-border-color:transparent;" VBox.vgrow="ALWAYS">
+        <VBox spacing="16" style="-fx-background-color:#F4F4F6;">
+            <padding><Insets bottom="24" left="24" right="24" top="24" /></padding>
+            <Label fx:id="emptyLabel" alignment="CENTER" managed="false" maxWidth="Infinity" style="-fx-font-size:16px; -fx-padding:60 0;" styleClass="empty-label" text="📦  У вас пока нет заказов. Перейдите в каталог!" visible="false" />
+            <VBox fx:id="ordersBox" spacing="16" />
+        </VBox>
+    </ScrollPane>
+</VBox>

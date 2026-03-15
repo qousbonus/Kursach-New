@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="Infinity" maxWidth="Infinity" style="-fx-background-color:#F4F4F6;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="controller.CartController">
+
+    <HBox alignment="CENTER_LEFT" maxWidth="Infinity" prefHeight="56" spacing="12" styleClass="navbar">
+        <padding><Insets bottom="0" left="20" right="20" top="0" /></padding>
+        <Button onAction="#handleBack" style="-fx-text-fill:#AAAAAA;" styleClass="btn-ghost" text="← Каталог" />
+        <Label styleClass="nav-brand" text="PROTEIN STORE" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button onAction="#handleOrders" styleClass="nav-link" text="Мои заказы" />
+    </HBox>
+
+    <HBox spacing="0" VBox.vgrow="ALWAYS">
+
+        <ScrollPane fitToWidth="true" style="-fx-background-color:transparent; -fx-border-color:transparent;" HBox.hgrow="ALWAYS">
+            <VBox spacing="16" style="-fx-background-color:#F4F4F6;">
+                <padding><Insets bottom="28" left="28" right="20" top="28" /></padding>
+                <Label styleClass="heading-lg" text="Корзина" />
+                <Label fx:id="emptyLabel" alignment="CENTER" managed="false" maxWidth="Infinity" style="-fx-font-size:18px;" styleClass="empty-label" text="🛒  Ваша корзина пуста" visible="false" />
+                <VBox fx:id="cartItemsBox" spacing="12" />
+            </VBox>
+        </ScrollPane>
+
+        <VBox maxWidth="400" minWidth="320" style="-fx-background-color:#FFFFFF; -fx-border-color:transparent transparent transparent #EEEEEE; -fx-border-width:0 0 0 1;">
+            <padding><Insets bottom="28" left="28" right="28" top="28" /></padding>
+            <VBox spacing="18" styleClass="cart-summary-box">
+                <Label styleClass="heading-md" text="Оформление заказа" />
+
+                <VBox spacing="6">
+                    <Label styleClass="login-input-label" text="ПРОМОКОД" />
+                    <HBox spacing="8">
+                        <TextField fx:id="promoField" promptText="Введите промокод" HBox.hgrow="ALWAYS" />
+                        <Button onAction="#handleApplyPromo" styleClass="btn-outline" text="Применить" />
+                    </HBox>
+                    <Label fx:id="promoStatusLabel" styleClass="text-success" wrapText="true" />
+                </VBox>
+
+                <Separator />
+
+                <VBox spacing="6">
+                    <Label styleClass="login-input-label" text="АДРЕС ДОСТАВКИ" />
+                    <TextField fx:id="addressField" promptText="Улица, дом, квартира" />
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label styleClass="login-input-label" text="СПОСОБ ОПЛАТЫ" />
+                    <ComboBox fx:id="paymentCombo" maxWidth="Infinity" />
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label styleClass="login-input-label" text="КОММЕНТАРИЙ" />
+                    <TextArea fx:id="noteArea" prefHeight="70" promptText="Особые пожелания..." wrapText="true" />
+                </VBox>
+
+                <Separator />
+
+                <VBox spacing="10">
+                    <HBox>
+                        <Label styleClass="label-muted" text="Сумма:" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="totalLabel" styleClass="label-bright" />
+                    </HBox>
+                    <HBox>
+                        <Label styleClass="label-muted" text="Скидка:" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="discountLabel" styleClass="text-success" />
+                    </HBox>
+                    <Separator />
+                    <HBox>
+                        <Label styleClass="heading-sm" text="Итого:" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="finalTotalLabel" styleClass="label-price" />
+                    </HBox>
+                </VBox>
+
+                <Label fx:id="errorLabel" styleClass="text-error" wrapText="true" />
+                <Button fx:id="checkoutBtn" maxWidth="Infinity" onAction="#handleCheckout" prefHeight="48" styleClass="btn-primary" text="Оформить заказ →" />
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

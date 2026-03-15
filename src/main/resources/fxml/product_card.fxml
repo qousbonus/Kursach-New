@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.ProductCardController"
+      styleClass="product-card"
+      maxWidth="Infinity"
+      onMouseClicked="#handleOpenDetail">
+
+    <VBox styleClass="product-image-box" prefHeight="170" alignment="CENTER">
+        <ImageView fx:id="productImage" fitWidth="190" fitHeight="150"
+                   preserveRatio="true" smooth="true"/>
+    </VBox>
+
+    <VBox VBox.vgrow="ALWAYS" spacing="7">
+        <padding><Insets top="12" right="14" bottom="14" left="14"/></padding>
+
+        <HBox spacing="6" alignment="CENTER_LEFT">
+            <Label fx:id="categoryLabel" styleClass="product-brand-label" maxWidth="Infinity"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="discountLabel" styleClass="product-discount"/>
+        </HBox>
+
+        <Label fx:id="nameLabel" styleClass="product-name-label" wrapText="true" maxWidth="Infinity"/>
+        <Label fx:id="brandLabel" styleClass="product-brand-label"/>
+        <Label fx:id="ratingLabel" styleClass="product-rating"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <HBox alignment="CENTER_LEFT" spacing="8">
+            <Label fx:id="priceLabel" styleClass="product-price-label"/>
+            <Label fx:id="oldPriceLabel" styleClass="product-old-price"/>
+        </HBox>
+
+        <Label fx:id="stockLabel" styleClass="product-stock"/>
+
+        <Button fx:id="addToCartBtn" text="В корзину" styleClass="btn-primary"
+                maxWidth="Infinity" prefHeight="36"
+                onAction="#handleAddToCart"
+                onMouseClicked="#handleAddToCartConsumed"/>
+    </VBox>
+</VBox>

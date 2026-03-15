@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox maxHeight="Infinity" maxWidth="Infinity" styleClass="login-root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="controller.LoginController">
+
+    <VBox alignment="CENTER" maxWidth="460" minWidth="400" styleClass="login-right">
+        <padding><Insets bottom="40" left="48" right="48" top="40" /></padding>
+        <VBox spacing="24">
+            <VBox spacing="4">
+                <Label style="-fx-text-fill:#E8001D; -fx-font-size:16px; -fx-font-weight:bold;" />
+                <Label styleClass="login-title" text="Войти в аккаунт" />
+                <Label styleClass="login-subtitle" text="Введите данные для входа в систему" />
+            </VBox>
+            <VBox spacing="6">
+                <Label styleClass="login-input-label" text="ЛОГИН ИЛИ EMAIL" />
+                <TextField fx:id="usernameField" promptText="Введите логин или email" />
+            </VBox>
+            <VBox spacing="6">
+                <Label styleClass="login-input-label" text="ПАРОЛЬ" />
+                <PasswordField fx:id="passwordField" promptText="Введите пароль" />
+            </VBox>
+            <Label fx:id="errorLabel" styleClass="text-error" wrapText="true" />
+            <Button maxWidth="Infinity" onAction="#handleLogin" prefHeight="48" styleClass="btn-primary" text="Войти →" />
+            <Separator />
+            <VBox alignment="CENTER" spacing="10">
+                <Label styleClass="text-muted" text="Нет аккаунта?" />
+                <Button maxWidth="Infinity" onAction="#handleRegister" prefHeight="44" styleClass="btn-outline" text="Зарегистрироваться" />
+                <Button maxWidth="Infinity" onAction="#handleGuestEntry" styleClass="btn-ghost" text="Войти как гость" />
+            </VBox>
+        </VBox>
+    </VBox>
+
+    <VBox alignment="CENTER" spacing="32" styleClass="login-left" HBox.hgrow="ALWAYS">
+        <padding><Insets bottom="60" left="60" right="60" top="60" /></padding>
+        <VBox alignment="CENTER" spacing="10">
+            <Label styleClass="login-brand" text="PROTEIN STORE">
+            <font>
+               <Font size="36.0" />
+            </font></Label>
+        </VBox>
+        <VBox alignment="CENTER" maxWidth="380" spacing="10">
+            <Label alignment="CENTER" style="-fx-text-fill:#FFFFFF; -fx-font-size:22px; -fx-font-weight:bold;" text="Профессиональное спортивное питание" wrapText="true" />
+            <Label alignment="CENTER" style="-fx-text-fill:#555555; -fx-font-size:12px;" text="Протеин · Гейнеры · Аминокислоты · Витамины · Жиросжигатели" wrapText="true" />
+        </VBox>
+    </VBox>
+</HBox>

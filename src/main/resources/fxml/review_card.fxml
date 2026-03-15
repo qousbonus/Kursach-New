@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.ReviewCardController"
+      styleClass="review-card" spacing="8">
+
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <Label fx:id="starsLabel" styleClass="label-stars"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="authorLabel" styleClass="review-author"/>
+        <Button fx:id="deleteBtn" text="✕ Удалить" styleClass="btn-danger-small"
+                onAction="#handleDelete" visible="false" managed="false"/>
+    </HBox>
+
+    <Label fx:id="titleLabel" styleClass="review-title"/>
+    <Label fx:id="commentLabel" styleClass="review-text" wrapText="true" maxWidth="Infinity"/>
+</VBox>

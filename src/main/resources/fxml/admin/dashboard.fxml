@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox maxHeight="Infinity" maxWidth="Infinity" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="controller.admin.AdminDashboardController">
+
+    <VBox spacing="0" styleClass="panel-sidebar">
+
+        <VBox style="-fx-padding: 24 20 16 20; -fx-border-color: transparent transparent #1E1E30 transparent; -fx-border-width: 0 0 1 0;">
+            <Label styleClass="nav-brand" text="POWERFORM" />
+            <Label fx:id="adminNameLabel" styleClass="sidebar-sub" />
+        </VBox>
+
+        <VBox spacing="2" VBox.vgrow="ALWAYS">
+            <padding><Insets bottom="0" left="0" right="0" top="16" /></padding>
+            <Label style="-fx-text-fill:#30304A; -fx-font-size:10px; -fx-font-weight:bold; -fx-padding: 8 20;" text="ПАНЕЛЬ УПРАВЛЕНИЯ" />
+            <Button fx:id="tabUsersBtn" maxWidth="Infinity" onAction="#handleTabUsers" styleClass="sidebar-btn,active" text="Пользователи" />
+            <Button fx:id="tabReviewsBtn" maxWidth="Infinity" onAction="#handleTabReviews" styleClass="sidebar-btn" text="Отзывы" />
+            <Button fx:id="tabLogsBtn" maxWidth="Infinity" onAction="#handleTabLogs" styleClass="sidebar-btn" text="Логи" />
+        </VBox>
+
+        <VBox style="-fx-padding: 16 12; -fx-border-color: #1E1E30 transparent transparent transparent; -fx-border-width: 1 0 0 0;">
+            <Button maxWidth="Infinity" onAction="#handleLogout" prefHeight="38" styleClass="btn-danger" text="Выйти" />
+        </VBox>
+    </VBox>
+
+    <VBox spacing="20" styleClass="panel-content" HBox.hgrow="ALWAYS">
+
+        <VBox fx:id="tabUsers" spacing="16" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <VBox spacing="2">
+                    <Label styleClass="panel-title" text="Управление пользователями" />
+                    <Label styleClass="panel-subtitle" text="Блокировка, активация и управление аккаунтами" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <TextField fx:id="userSearchField" prefHeight="38" promptText="Поиск пользователя..." />
+                <Button onAction="#handleRefreshUsers" prefHeight="38" styleClass="button" text="Обновить" />
+            </HBox>
+
+            <TableView fx:id="usersTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colUserId" text="#" />
+                    <TableColumn fx:id="colUsername" text="Логин" />
+                    <TableColumn fx:id="colEmail" text="Email" />
+                    <TableColumn fx:id="colRole" text="Роль" />
+                    <TableColumn fx:id="colLocked" text="Заблокирован" />
+                    <TableColumn fx:id="colCreated" text="Создан" />
+                    <TableColumn fx:id="colUserActions" text="Действия" />
+                </columns>
+            </TableView>
+        </VBox>
+
+        <VBox fx:id="tabReviews" managed="false" spacing="16" visible="false" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <VBox spacing="2">
+                    <Label styleClass="panel-title" text="Модерация отзывов" />
+                    <Label styleClass="panel-subtitle" text="Проверяйте и управляйте отзывами покупателей" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#handleRefreshReviews" prefHeight="36" styleClass="button" text="Обновить" />
+            </HBox>
+
+            <TableView fx:id="reviewsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colRevId" text="#" />
+                    <TableColumn fx:id="colRevUser" text="Автор" />
+                    <TableColumn fx:id="colRevProduct" text="Товар" />
+                    <TableColumn fx:id="colRevRating" text="Оценка" />
+                    <TableColumn fx:id="colRevComment" text="Комментарий" />
+                    <TableColumn fx:id="colRevActions" text="Действия" />
+                </columns>
+            </TableView>
+        </VBox>
+
+        <VBox fx:id="tabLogs" managed="false" spacing="16" visible="false" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <VBox spacing="2">
+                    <Label styleClass="panel-title" text="Журнал событий" />
+                    <Label styleClass="panel-subtitle" text="Все действия в системе (последние 500)" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#handleRefreshLogs" prefHeight="36" styleClass="button" text="Обновить" />
+            </HBox>
+
+            <TableView fx:id="logsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colLogId" text="#" />
+                    <TableColumn fx:id="colLogTime" text="Время" />
+                    <TableColumn fx:id="colLogUser" text="Пользователь" />
+                    <TableColumn fx:id="colLogAction" text="Действие" />
+                    <TableColumn fx:id="colLogTable" text="Таблица" />
+                    <TableColumn fx:id="colLogDetails" text="Детали" />
+                </columns>
+            </TableView>
+        </VBox>
+    </VBox>
+</HBox>

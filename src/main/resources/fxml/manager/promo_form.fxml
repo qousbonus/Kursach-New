@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="Infinity" maxWidth="Infinity" styleClass="root"
+      style="-fx-background-color: #F4F4F6;"
+      xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12"
+      fx:controller="controller.manager.PromoFormController">
+
+    <HBox style="-fx-padding: 24 28 16 28; -fx-border-color: transparent transparent #E8E8F0 transparent; -fx-border-width: 0 0 1 0;">
+        <Label fx:id="formTitleLabel" text="Новый промокод" styleClass="panel-title" />
+    </HBox>
+
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                style="-fx-background-color: transparent; -fx-background: transparent;"
+                VBox.vgrow="ALWAYS">
+
+        <VBox spacing="14" style="-fx-padding: 20 28; -fx-background-color: transparent;">
+
+            <VBox spacing="5" style="-fx-background-color:#FFFFFF; -fx-background-radius:12; -fx-border-color:#E8E8F0; -fx-border-radius:12; -fx-border-width:1.5; -fx-padding:20;">
+
+                <VBox spacing="5">
+                    <Label text="Код" styleClass="form-label" />
+                    <TextField fx:id="codeField" promptText="Например: SUMMER20"
+                               style="-fx-text-fill:#111111; -fx-font-weight:bold; -fx-font-family:monospace; -fx-font-size:14px;" />
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Скидка (%)" styleClass="form-label" />
+                    <TextField fx:id="discountField" promptText="от 1 до 100" />
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Максимум использований" styleClass="form-label" />
+                    <TextField fx:id="maxUsesField" promptText="Например: 100" />
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Дата истечения (необязательно)" styleClass="form-label" />
+                    <TextField fx:id="expiresField" promptText="ГГГГ-ММ-ДД" />
+                    <Label text="Оставьте пустым — без срока" style="-fx-text-fill:#AAAAAA; -fx-font-size:11px;" />
+                </VBox>
+
+                <CheckBox fx:id="activeCheck" text="Активен" selected="true"
+                          style="-fx-padding: 6 0 0 0;" />
+
+                <Label fx:id="errorLabel" style="-fx-text-fill:#E8001D; -fx-font-size:12px; -fx-padding: 4 0 0 0;" />
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+
+    <HBox spacing="10" style="-fx-padding: 16 28; -fx-border-color: #E8E8F0 transparent transparent transparent; -fx-border-width: 1 0 0 0;">
+        <Button onAction="#handleSave"   prefHeight="38" prefWidth="180" styleClass="btn-primary" text="Сохранить" />
+        <Button onAction="#handleCancel" prefHeight="38" prefWidth="120" styleClass="btn-ghost"   text="Отмена" />
+    </HBox>
+
+</VBox>

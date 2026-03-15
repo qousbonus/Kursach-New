@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.CartItemController"
+      styleClass="cart-item-card" alignment="CENTER_LEFT" spacing="16">
+
+    <VBox HBox.hgrow="ALWAYS" spacing="4">
+        <Label fx:id="nameLabel" styleClass="product-name-label"/>
+        <Label fx:id="priceLabel" styleClass="label-muted"/>
+    </VBox>
+
+    <Spinner fx:id="quantitySpinner" prefWidth="94" prefHeight="36"/>
+    <Button text="✕" styleClass="btn-danger-small" onAction="#handleRemove"/>
+</HBox>

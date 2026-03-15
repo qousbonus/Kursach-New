@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox maxHeight="Infinity" maxWidth="Infinity" styleClass="login-root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="controller.RegisterController">
+
+    <VBox alignment="CENTER" maxWidth="480" minWidth="420" styleClass="login-right">
+        <padding><Insets bottom="40" left="48" right="48" top="40" /></padding>
+        <VBox spacing="18">
+            <VBox spacing="4">
+                <Label styleClass="login-title" text="Регистрация" />
+                <Label styleClass="login-subtitle" text="Заполните данные для создания аккаунта" />
+            </VBox>
+            <VBox spacing="6">
+                <Label styleClass="login-input-label" text="ЛОГИН" />
+                <TextField fx:id="usernameField" promptText="Придумайте логин" />
+            </VBox>
+            <VBox spacing="6">
+                <Label styleClass="login-input-label" text="EMAIL" />
+                <TextField fx:id="emailField" promptText="Введите email" />
+            </VBox>
+            <VBox spacing="6">
+                <Label styleClass="login-input-label" text="ПАРОЛЬ" />
+                <PasswordField fx:id="passwordField" promptText="Минимум 6 символов" />
+            </VBox>
+            <Label fx:id="errorLabel" styleClass="text-error" wrapText="true" />
+            <Button maxWidth="Infinity" onAction="#handleRegister" prefHeight="48" styleClass="btn-primary" text="Создать аккаунт →" />
+            <HBox alignment="CENTER" spacing="8">
+                <Label styleClass="text-muted" text="Уже есть аккаунт?" />
+                <Button onAction="#handleBack" styleClass="btn-ghost" text="Войти" />
+            </HBox>
+        </VBox>
+    </VBox>
+
+    <VBox alignment="CENTER" spacing="28" styleClass="login-left" HBox.hgrow="ALWAYS">
+        <padding><Insets bottom="60" left="60" right="60" top="60" /></padding>
+        <Label styleClass="login-brand" text="PROTEIN STORE">
+         <font>
+            <Font size="36.0" />
+         </font></Label>
+        <VBox alignment="CENTER" maxWidth="360" spacing="10">
+            <Label alignment="CENTER" style="-fx-text-fill:#FFFFFF; -fx-font-size:24px; -fx-font-weight:bold;" text="Создайте аккаунт" />
+        </VBox>
+    </VBox>
+</HBox>

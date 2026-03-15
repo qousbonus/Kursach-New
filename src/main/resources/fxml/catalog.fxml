@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="Infinity" maxWidth="Infinity" style="-fx-background-color:#F4F4F6;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="controller.CatalogController">
+
+    <HBox alignment="CENTER_LEFT" maxWidth="Infinity" prefHeight="56" spacing="4" styleClass="navbar">
+        <padding><Insets bottom="0" left="20" right="20" top="0" /></padding>
+        <Label styleClass="nav-brand" text="PROTEIN STORE" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button fx:id="backToManagerBtn" managed="false" onAction="#handleBackToManager" styleClass="nav-link" text="← Панель менеджера" visible="false" />
+        <Button fx:id="ordersBtn" onAction="#handleOrders" styleClass="nav-link" text="Заказы" />
+        <Button onAction="#handleProfile" styleClass="nav-link" text="Профиль" />
+        <Button fx:id="cartCountLabel" onAction="#handleCart" styleClass="nav-cart-btn" text="🛒  Корзина" />
+        <Button onAction="#handleLogout" styleClass="nav-link" text="Выйти" />
+    </HBox>
+
+    <HBox alignment="CENTER_LEFT" maxWidth="Infinity" prefHeight="52" spacing="12" styleClass="toolbar">
+        <padding><Insets bottom="0" left="20" right="20" top="0" /></padding>
+        <TextField fx:id="searchField" prefHeight="36" prefWidth="400" promptText="🔍   Поиск по названию, бренду..." />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="productCountLabel" styleClass="label-muted" />
+    </HBox>
+
+    <ScrollPane fitToHeight="true" hbarPolicy="NEVER" maxWidth="Infinity" prefHeight="48" style="-fx-background-color:#FFFFFF; -fx-border-color:transparent transparent #EEEEEE transparent;                        -fx-border-width:0 0 1 0; -fx-padding:0;" vbarPolicy="NEVER">
+        <HBox fx:id="categoryBar" alignment="CENTER_LEFT" spacing="0">
+            <padding><Insets bottom="0" left="20" right="20" top="0" /></padding>
+        </HBox>
+    </ScrollPane>
+
+    <ScrollPane fitToWidth="true" maxWidth="Infinity" style="-fx-background-color:transparent; -fx-border-color:transparent;" VBox.vgrow="ALWAYS">
+        <VBox maxWidth="Infinity" style="-fx-background-color:#F4F4F6;">
+            <padding><Insets bottom="24" left="24" right="24" top="24" /></padding>
+            <Label fx:id="emptyGridLabel" alignment="CENTER" managed="false" maxWidth="Infinity" style="-fx-font-size:18px; -fx-padding:80 0;" styleClass="empty-label" text="Товары не найдены" visible="false" />
+            <TilePane fx:id="productGrid" hgap="20" maxWidth="Infinity" prefColumns="5" prefTileHeight="380" prefTileWidth="220" tileAlignment="TOP_LEFT" vgap="20" />
+        </VBox>
+    </ScrollPane>
+</VBox>

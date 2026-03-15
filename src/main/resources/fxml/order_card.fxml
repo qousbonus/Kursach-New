@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.OrderCardController"
+      styleClass="order-card" spacing="12">
+
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <Label fx:id="orderIdLabel" styleClass="order-id-label"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="statusLabel"/>
+        <Label fx:id="dateLabel" styleClass="label-muted"/>
+    </HBox>
+
+    <Separator/>
+    <VBox fx:id="itemsBox" spacing="5"/>
+    <Separator/>
+
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <VBox HBox.hgrow="ALWAYS" spacing="2">
+            <Label text="Адрес доставки" styleClass="label-muted"/>
+            <Label fx:id="addressLabel" styleClass="label-bright" wrapText="true"/>
+        </VBox>
+        <Label fx:id="totalLabel" styleClass="order-total-label"/>
+    </HBox>
+
+    <Button fx:id="markReceivedBtn" text="✅  Отметить как полученный"
+            styleClass="btn-primary" prefHeight="38"
+            onAction="#handleMarkReceived"
+            visible="false" managed="false"/>
+</VBox>

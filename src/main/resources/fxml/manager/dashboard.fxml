@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox maxHeight="Infinity" maxWidth="Infinity" styleClass="root"
+      xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12"
+      fx:controller="controller.manager.ManagerDashboardController">
+
+    <VBox spacing="0" styleClass="panel-sidebar">
+
+        <VBox style="-fx-padding: 24 20 16 20; -fx-border-color: transparent transparent #1E1E30 transparent; -fx-border-width: 0 0 1 0;">
+            <Label styleClass="nav-brand" text="POWERFORM" />
+            <Label fx:id="managerNameLabel" styleClass="sidebar-sub" />
+        </VBox>
+
+        <VBox spacing="2" VBox.vgrow="ALWAYS">
+            <padding><Insets top="16" /></padding>
+            <Label style="-fx-text-fill:#30304A; -fx-font-size:10px; -fx-font-weight:bold; -fx-padding: 8 20;" text="УПРАВЛЕНИЕ" />
+            <Button fx:id="tabProductsBtn" maxWidth="Infinity" onAction="#handleTabProducts" styleClass="sidebar-btn,active" text="Товары" />
+            <Button fx:id="tabOrdersBtn"   maxWidth="Infinity" onAction="#handleTabOrders"   styleClass="sidebar-btn"        text="Заказы" />
+            <Button fx:id="tabPromosBtn"   maxWidth="Infinity" onAction="#handleTabPromos"   styleClass="sidebar-btn"        text="Промокоды" />
+        </VBox>
+
+        <VBox style="-fx-padding: 16 12; -fx-border-color: #1E1E30 transparent transparent transparent; -fx-border-width: 1 0 0 0;">
+            <Button maxWidth="Infinity" onAction="#handleBack"   styleClass="btn-ghost"        text="Каталог" />
+            <Button maxWidth="Infinity" onAction="#handleLogout" styleClass="btn-danger-small" text="Выйти" />
+        </VBox>
+    </VBox>
+
+    <VBox spacing="20" styleClass="panel-content" HBox.hgrow="ALWAYS">
+
+        <VBox fx:id="tabProducts" spacing="16" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <VBox spacing="2">
+                    <Label styleClass="panel-title"    text="Управление товарами" />
+                    <Label styleClass="panel-subtitle" text="Добавляйте, редактируйте и удаляйте товары" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <TextField fx:id="productSearchField" prefHeight="38" promptText="Поиск товара..." />
+                <Button onAction="#handleAddProduct" prefHeight="38" styleClass="btn-primary" text="+ Добавить товар" />
+            </HBox>
+
+            <TableView fx:id="productsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colProdName"      text="Название" />
+                    <TableColumn fx:id="colProdBrand"     text="Бренд" />
+                    <TableColumn fx:id="colProdCategory"  text="Категория" />
+                    <TableColumn fx:id="colProdPrice"     text="Цена" />
+                    <TableColumn fx:id="colProdDiscount"  text="Скидка %" />
+                    <TableColumn fx:id="colProdStock"     text="На складе" />
+                    <TableColumn fx:id="colProdAvailable" text="Доступен" />
+                    <TableColumn fx:id="colProdActions"   text="Действия" />
+                </columns>
+            </TableView>
+        </VBox>
+
+        <VBox fx:id="tabOrders" managed="false" spacing="16" visible="false" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <VBox spacing="2">
+                    <Label styleClass="panel-title"    text="Управление заказами" />
+                    <Label styleClass="panel-subtitle" text="Просматривайте и обрабатывайте заказы покупателей" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label styleClass="label-muted" text="Фильтр:" />
+                <ComboBox fx:id="orderStatusFilter" prefHeight="38" />
+            </HBox>
+
+            <TableView fx:id="ordersTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colOrderId"      text="#" />
+                    <TableColumn fx:id="colOrderUser"    text="Клиент" />
+                    <TableColumn fx:id="colOrderStatus"  text="Статус" />
+                    <TableColumn fx:id="colOrderDate"    text="Оплата" />
+                    <TableColumn fx:id="colOrderTotal"   text="Сумма" />
+                    <TableColumn fx:id="colOrderAddress" text="Адрес" />
+                </columns>
+            </TableView>
+
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label styleClass="label-muted" text="Изменить статус:" />
+                <ComboBox fx:id="newStatusCombo" prefHeight="36" prefWidth="200" />
+                <Button onAction="#handleChangeOrderStatus" prefHeight="36" styleClass="btn-primary" text="Применить" />
+            </HBox>
+        </VBox>
+
+        <VBox fx:id="tabPromos" managed="false" spacing="16" visible="false" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <VBox spacing="2">
+                    <Label styleClass="panel-title"    text="Промокоды" />
+                    <Label styleClass="panel-subtitle" text="Управляйте скидочными кодами" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#handleAddPromo" prefHeight="38" styleClass="btn-primary" text="+ Добавить промокод" />
+            </HBox>
+
+            <TableView fx:id="promosTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colPromoCode"     text="Код" />
+                    <TableColumn fx:id="colPromoDiscount" text="Скидка" />
+                    <TableColumn fx:id="colPromoUses"     text="Использован" />
+                    <TableColumn fx:id="colPromoMax"      text="Лимит" />
+                    <TableColumn fx:id="colPromoExpires"  text="Истекает" />
+                    <TableColumn fx:id="colPromoActive"   text="Активен" />
+                    <TableColumn fx:id="colPromoActions"  text="Действия" />
+                </columns>
+            </TableView>
+        </VBox>
+
+    </VBox>
+</HBox>
