@@ -42,6 +42,7 @@ public class SceneManager {
         root.layout();
         HistoryFeature.install(root);
         PopularProductsFeature.install(root);
+        LowStockFeature.install(root);
     }
     private static Scene buildScene(FXMLLoader loader) throws IOException {
         Parent root = loader.load();

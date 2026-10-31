@@ -32,6 +32,10 @@ public final class HistoryClient {
     public static void clearSession() { current = null; }
     public static Identity capture() { return current; }
     public static boolean isCurrent(Identity identity) { return identity != null && current == identity; }
+    static HttpRequest.Builder authorize(Identity identity, HttpRequest.Builder builder) throws IOException {
+        if (!isCurrent(identity)) throw new IOException("Сессия изменилась. Войдите повторно.");
+        return builder.header("Authorization", "Bearer " + identity.token);
+    }
     private static String request(Identity identity, String method, String query, String body) throws Exception {
         if (!isCurrent(identity)) throw new IOException("Сессия изменилась. Войдите повторно.");
         SupabaseConfig cfg = SupabaseConfig.getInstance();
