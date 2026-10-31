@@ -3,6 +3,7 @@ package app;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import util.SceneManager;
+import util.ThemeManager;
 
 public class Main extends Application {
     @Override
@@ -12,6 +13,7 @@ public class Main extends Application {
         primaryStage.setMinHeight(700);
         primaryStage.setMaximized(true);
         SceneManager.init(primaryStage);
+        ThemeManager.initialize(primaryStage);
 
         new Thread(() -> {
             try { new service.ReviewService().syncAllProductStats(); }

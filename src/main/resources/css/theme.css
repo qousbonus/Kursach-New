@@ -1,0 +1,52 @@
+.theme-root {
+ -app-bg: #F4F4F6; -app-surface: #FFFFFF; -app-alt: #F8F8FA;
+ -app-text: #111111; -app-secondary: #555555; -app-muted: #707078;
+ -app-border: #E0E0E0; -app-selection: #FFF0F1; -app-accent: #E8001D;
+ -app-danger: #DC2626; -app-success: #15803D;
+ -fx-base: -app-surface; -fx-background: -app-bg;
+ -fx-control-inner-background: -app-surface; -fx-text-base-color: -app-text;
+ -fx-text-background-color: -app-text; -fx-accent: -app-accent;
+ -fx-background-color: -app-bg;
+}
+.theme-root.theme-dark {
+ -app-bg: #14161C; -app-surface: #20242D; -app-alt: #292E39;
+ -app-text: #F1F3F7; -app-secondary: #D0D5DF; -app-muted: #A4ADBC;
+ -app-border: #424B5B; -app-selection: #422732; -app-accent: #FF5368;
+ -app-danger: #FF7B86; -app-success: #6DDEA0;
+}
+.theme-root .label { -fx-text-fill: -app-secondary; }
+.theme-root .heading-xl, .theme-root .heading-lg, .theme-root .heading-md, .theme-root .heading-sm, .theme-root .panel-title, .theme-root .profile-name, .theme-root .product-name-label, .theme-root .order-id-label, .theme-root .review-author, .theme-root .review-title, .theme-root .login-title, .theme-root .stat-value { -fx-text-fill: -app-text; }
+.theme-root .label-muted, .theme-root .text-muted, .theme-root .profile-email, .theme-root .login-input-label, .theme-root .review-text, .theme-root .order-item-label { -fx-text-fill: -app-muted; }
+.theme-root .panel-content, .theme-root .login-root, .theme-root .split-pane { -fx-background-color: -app-bg; }
+.theme-root .profile-section-card, .theme-root .product-card, .theme-root .order-card, .theme-root .cart-item-card, .theme-root .cart-summary-box, .theme-root .stat-card, .theme-root .login-right, .theme-root .login-form-box, .theme-root .toolbar, .theme-root .category-bar { -fx-background-color: -app-surface; -fx-border-color: -app-border; }
+.theme-root .review-card, .theme-root .product-image-box { -fx-background-color: -app-alt; -fx-border-color: -app-border; }
+.theme-root .text-field, .theme-root .password-field, .theme-root .text-area, .theme-root .combo-box, .theme-root .spinner { -fx-background-color: -app-surface; -fx-text-fill: -app-text; -fx-prompt-text-fill: -app-muted; -fx-border-color: -app-border; }
+.theme-root .text-area .content, .theme-root .list-view, .theme-root .list-cell { -fx-background-color: -app-surface; -fx-text-fill: -app-text; }
+.theme-root .list-cell:selected, .theme-root .list-cell:hover { -fx-background-color: -app-selection; }
+.theme-root .combo-box > .list-cell { -fx-text-fill: -app-text; }
+.theme-root .button { -fx-background-color: -app-surface; -fx-text-fill: -app-secondary; -fx-border-color: -app-border; }
+.theme-root .button:hover { -fx-background-color: -app-alt; -fx-text-fill: -app-text; }
+.theme-root .btn-primary, .theme-root .btn-danger, .theme-root .nav-cart-btn { -fx-background-color: -app-accent; -fx-text-fill: #FFFFFF; -fx-border-color: transparent; }
+.theme-root .btn-outline, .theme-root .btn-danger-small { -fx-background-color: transparent; -fx-text-fill: -app-accent; -fx-border-color: -app-accent; }
+.theme-root .btn-ghost, .theme-root .detail-back-btn { -fx-background-color: transparent; -fx-text-fill: -app-muted; -fx-border-color: transparent; }
+.theme-root .navbar .button, .theme-root .panel-sidebar .button { -fx-background-color: transparent; -fx-text-fill: #D0D5DF; -fx-border-color: transparent; }
+.theme-root .navbar .nav-cart-btn { -fx-background-color: -app-accent; -fx-text-fill: #FFFFFF; }
+.theme-root .navbar .label, .theme-root .login-left .label { -fx-text-fill: #D0D5DF; }
+.theme-root .navbar .nav-brand, .theme-root .login-left .login-brand, .theme-root .login-left .feature-title { -fx-text-fill: #FFFFFF; }
+.theme-root .sidebar-btn.active { -fx-text-fill: -app-accent; -fx-background-color: -app-selection; }
+.theme-root .label-accent, .theme-root .label-price, .theme-root .product-price-label, .theme-root .order-total-label, .theme-root .profile-role { -fx-text-fill: -app-accent; }
+.theme-root .text-error, .theme-root .out-of-stock { -fx-text-fill: -app-danger; }
+.theme-root .text-success, .theme-root .product-stock { -fx-text-fill: -app-success; }
+.theme-root .category-btn { -fx-background-color: transparent; -fx-text-fill: -app-secondary; -fx-border-color: transparent; }
+.theme-root .category-btn.active { -fx-text-fill: -app-accent; -fx-border-color: transparent transparent -app-accent transparent; }
+.theme-root .table-view, .theme-root .table-row-cell { -fx-background-color: -app-surface; -fx-border-color: -app-border; }
+.theme-root .table-row-cell:odd, .theme-root .table-view .column-header-background { -fx-background-color: -app-alt; }
+.theme-root .table-row-cell:selected, .theme-root .table-row-cell:hover { -fx-background-color: -app-selection; }
+.theme-root .table-view .table-cell, .theme-root .table-row-cell:selected .table-cell { -fx-text-fill: -app-text; }
+.theme-root.dialog-pane, .theme-root .header-panel, .theme-root .button-bar { -fx-background-color: -app-surface; }
+.theme-root .star-btn { -fx-background-color: transparent; -fx-text-fill: -app-muted; -fx-border-color: transparent; }
+.theme-root .star-btn.active, .theme-root .star-btn:hover, .theme-root .label-stars, .theme-root .product-rating { -fx-text-fill: #F59E0B; }
+.theme-root .status-pending, .theme-root .status-confirmed, .theme-root .status-processing, .theme-root .status-shipped, .theme-root .status-delivered, .theme-root .status-cancelled { -fx-background-color: -app-alt; -fx-text-fill: -app-text; }
+.theme-root .status-delivered { -fx-text-fill: -app-success; }
+.theme-root .status-cancelled { -fx-text-fill: -app-danger; }
+.theme-root .label-discount, .theme-root .product-discount { -fx-text-fill: #FFFFFF; }
