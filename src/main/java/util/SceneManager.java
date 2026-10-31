@@ -29,14 +29,21 @@ public class SceneManager {
         stage.show();
         if (wasMaximized) {
             Platform.runLater(() -> {
+                if (stage.getScene() != scene) return;
                 stage.setMaximized(true);
-                Platform.runLater(() -> { scene.getRoot().applyCss(); scene.getRoot().layout(); });
+                Platform.runLater(() -> finishLayout(scene));
             });
-        } else Platform.runLater(() -> { scene.getRoot().applyCss(); scene.getRoot().layout(); });
+        } else Platform.runLater(() -> finishLayout(scene));
+    }
+    private static void finishLayout(Scene scene) {
+        if (stage.getScene() != scene) return;
+        Parent root = scene.getRoot();
+        root.applyCss();
+        root.layout();
+        HistoryFeature.install(root);
     }
     private static Scene buildScene(FXMLLoader loader) throws IOException {
         Parent root = loader.load();
-        HistoryFeature.install(root);
         Scene scene = new Scene(root);
         URL css = FxmlUtil.resolve("/css/style.css");
         if (css != null) scene.getStylesheets().add(css.toExternalForm());
