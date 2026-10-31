@@ -1,73 +1,47 @@
 package util;
 
+import com.google.gson.JsonObject;
 import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.net.http.*;
+import java.time.Duration;
 
 public class SupabaseAuth {
-
-    private static final HttpClient HTTP = HttpClient.newHttpClient();
-    private final String url;
-    private final String anonKey;
-
-    public SupabaseAuth() {
-        SupabaseConfig cfg = SupabaseConfig.getInstance();
-        this.url = cfg.getUrl();
-        this.anonKey = cfg.getAnonKey();
-    }
+    private static final HttpClient HTTP = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
+    private final SupabaseConfig cfg = SupabaseConfig.getInstance();
 
     public AuthResult signIn(String email, String password) {
-        String body = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\"}";
-        try {
-            HttpResponse<String> resp = HTTP.send(
-                    HttpRequest.newBuilder()
-                            .uri(URI.create(url + "/auth/v1/token?grant_type=password"))
-                            .header("Content-Type", "application/json")
-                            .header("apikey", anonKey)
-                            .POST(HttpRequest.BodyPublishers.ofString(body))
-                            .build(),
-                    HttpResponse.BodyHandlers.ofString()
-            );
-            if (resp.statusCode() == 200) return new AuthResult(true, null);
-            String rb = resp.body();
-            String msg = "Неверный email или пароль";
-            if (rb != null && rb.contains("User already registered")) msg = "Email уже используется";
-            return new AuthResult(false, msg);
-        } catch (Exception e) {
-            return new AuthResult(false, "Ошибка сети: " + e.getMessage());
-        }
+        HistoryClient.clearSession();
+        return authenticate("/auth/v1/token?grant_type=password", email, password, true);
     }
-
     public AuthResult signUp(String email, String password) {
-        String body = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\"}";
+        return authenticate("/auth/v1/signup", email, password, false);
+    }
+    private AuthResult authenticate(String path, String email, String password, boolean login) {
+        JsonObject body = new JsonObject();
+        body.addProperty("email", email);
+        body.addProperty("password", password);
         try {
-            HttpResponse<String> resp = HTTP.send(
-                    HttpRequest.newBuilder()
-                            .uri(URI.create(url + "/auth/v1/signup"))
-                            .header("Content-Type", "application/json")
-                            .header("apikey", anonKey)
-                            .POST(HttpRequest.BodyPublishers.ofString(body))
-                            .build(),
-                    HttpResponse.BodyHandlers.ofString()
-            );
-            if (resp.statusCode() == 200 || resp.statusCode() == 201) return new AuthResult(true, null);
-            String rb = resp.body();
-            String msg = "Ошибка регистрации";
-            if (rb != null && rb.contains("User already registered")) msg = "Email уже зарегистрирован";
-            return new AuthResult(false, msg);
+            var response = HTTP.send(HttpRequest.newBuilder(URI.create(cfg.getUrl() + path))
+                .timeout(Duration.ofSeconds(20)).header("Content-Type", "application/json")
+                .header("apikey", cfg.getAnonKey())
+                .POST(HttpRequest.BodyPublishers.ofString(body.toString())).build(),
+                HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() == 200 || (!login && response.statusCode() == 201)) {
+                if (login) HistoryClient.acceptLogin(response.body());
+                return new AuthResult(true, null);
+            }
+            return new AuthResult(false, login ? "Неверный email или пароль" : "Ошибка регистрации. Проверьте данные и доступность email.");
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return new AuthResult(false, "Запрос авторизации прерван");
         } catch (Exception e) {
-            return new AuthResult(false, "Ошибка сети: " + e.getMessage());
+            if (login) HistoryClient.clearSession();
+            return new AuthResult(false, "Не удалось выполнить авторизацию. Проверьте подключение и повторите попытку.");
         }
     }
-
     public static class AuthResult {
         public final boolean success;
         public final String error;
-
-        AuthResult(boolean success, String error) {
-            this.success = success;
-            this.error = error;
-        }
+        AuthResult(boolean success, String error) { this.success = success; this.error = error; }
     }
 }
