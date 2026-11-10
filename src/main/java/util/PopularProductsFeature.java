@@ -49,6 +49,15 @@ public final class PopularProductsFeature {
         }
         return rows;
     }
+    static BigDecimal discountedPrice(BigDecimal basePrice, int discountPercent) {
+        int discount = Math.max(0, Math.min(100, discountPercent));
+        return basePrice.multiply(BigDecimal.valueOf(100 - discount))
+            .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+    }
+    static String stockLabel(Integer stock) {
+        return stock == null ? "Остаток не указан" : stock == 0
+            ? "Нет в наличии" : "В наличии: " + stock + " шт.";
+    }
     private static Label label(String text, String style) {
         Label l = new Label(text); l.setWrapText(true); l.getStyleClass().add(style); return l;
     }
@@ -112,9 +121,8 @@ public final class PopularProductsFeature {
                     int rank = 0;
                     for (Item item : rows) {
                         Label name = label(item.name(), "product-name-label"); name.setMinHeight(42); name.setMaxHeight(42);
-                        int discount = Math.max(0, Math.min(100, item.discount()));
-                        BigDecimal price = item.price().multiply(BigDecimal.valueOf(100 - discount)).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
-                        String stock = item.stock() == null ? "Остаток не указан" : item.stock() == 0 ? "Нет в наличии" : "В наличии: " + item.stock() + " шт.";
+                        BigDecimal price = discountedPrice(item.price(), item.discount());
+                        String stock = stockLabel(item.stock());
                         Button open = new Button("Открыть товар"); open.setMaxWidth(Double.MAX_VALUE); open.setOnAction(e -> open(item.id()));
                         VBox card = new VBox(7, label("№ " + (++rank), "label-accent"), picture(item.image()), name,
                             label(item.brand(), "label-muted"), label(price.stripTrailingZeros().toPlainString() + " руб.", "product-price-label"),
